@@ -4,7 +4,7 @@ T = int(input())
 # 테스트 케이스 만큼 반복
 for tc in range(1, T+1):
     # 각 테스트 케이스의 번호
-    t = input().strip()
+    t = input()
 
     # 학생들 점수 입력
     score = list(map(int, input().split()))
