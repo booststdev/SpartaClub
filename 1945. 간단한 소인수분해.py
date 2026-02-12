@@ -22,5 +22,5 @@ for tc in range(1, T + 1):
     # answer : 출력할 문자열로 변환
     answer = ' '.join(map(str, exponents))
 
-    # 결과 출력 (예: #1 2 1 1 0 0)
+    # 결과 출력 
     print(f"#{tc} {answer}")
