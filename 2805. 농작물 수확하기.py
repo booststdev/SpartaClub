@@ -1,29 +1,30 @@
-# T : 테스트 케이스
+# 테스트 케이스 개수
 T = int(input())
 
 for tc in range(1, T+1):
-    # 농장 크기 입력받기
     N = int(input())
+    farm = [list(input()) for _ in range(N)]
 
-    # farm : N x N 농장 정보 입력 (2차원 리스트)
-    farm = [list(map(int, input().split())) for _ in range(N)]
-
-    # total : 마름모 영역 원소의 합
-    total = 0
-    
-    # center : 농장의 중앙 인덱스
-    # 예) N=5 → center = 2
+    total1 = 0
     center = N // 2
 
-    # center와의 거리만큼 좌우 범위 결정 (마름모 형태)
-    # i 인덱스 : 행 기준 -> 세로(위 -> 아래)로 움직임
+    # 전체 행을 순회
     for i in range(N):
-        start = center-abs(center-i)
-        end = center + abs(center-i)
-    
-    # total 구하기
-    # j 인덱스 : 열 기준 -> 가로(왼쪽 -> 오른쪽)으로 움직임
-    for j in range(start, end+1):
-        total += farm[i][j]
-    
-    print(f"#{tc} {total}")
+
+        # 🔹 위쪽 + 가운데 (i가 center 이하)
+        if i <= center:
+            start = center - i
+            end = center + i
+
+        # 🔹 아래쪽 (i가 center 초과)
+        else:
+            # 아래쪽은 다시 좁아져야 하므로
+            # i - center 만큼 좌우에서 줄어듦
+            start = i - center
+            end = (N - 1) - (i - center)
+
+        # 마름모 범위 합산
+        for j in range(start, end + 1):
+            total1 += int(farm[i][j])
+
+    print(f"#{tc} {total1}")
